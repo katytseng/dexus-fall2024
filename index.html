@@ -25,7 +25,7 @@
     // Custom marker icon
     const largeMarkerIcon = L.icon({
         iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon.png',
-        iconSize: [15, 20],
+        iconSize: [10, 15],
         iconAnchor: [25, 82],
         popupAnchor: [0, -82]
     });
@@ -34,8 +34,8 @@
     let allData = [];
 
     // URLs for fetching data
-    const departmentsUrl = 'https://raw.githubusercontent.com/katytseng/dexus-fall2024/main/departments.json';
-    const classesUrl = 'https://raw.githubusercontent.com/katytseng/dexus-fall2024/main/classes.json';
+    const departmentsUrl = 'https://raw.githubusercontent.com/katytseng/dexus-fall2024/refs/heads/main/departments.json';
+    const classesUrl = 'https://raw.githubusercontent.com/katytseng/dexus-fall2024/refs/heads/main/classes.json';
 
     // Fetch departments and populate dropdown
     fetch(departmentsUrl)
@@ -87,7 +87,7 @@
             const { Latitude, Longitude, Building, Percentage } = location;
 
             if (Latitude && Longitude) {
-                L.marker([Longitude, Latitude], { icon: largeMarkerIcon })
+                L.marker([Latitude, Longitude], { icon: largeMarkerIcon })
                     .addTo(map)
                     .bindPopup(`${Building} holds ${Percentage}% of the department's lectures`)
                     .bindTooltip(`${Building}: ${Percentage}%`, { permanent: true, offset: [-30, -30], opacity: 0.7 });
@@ -129,19 +129,12 @@
             pointer-events: none;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0);
         }
-        * {
-            font-family: monospace;
-        }
     </style>
 
-
     <br><br><br>
-
     <iframe title="Time of Departments' Lectures" aria-label="Table" id="datawrapper-chart-2eYpD" src="https://datawrapper.dwcdn.net/2eYpD/8/?search=ANTH" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="774" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
     <br><br><br>
-
     <iframe title="Days of Departments' Lectures" aria-label="Table" id="datawrapper-chart-Mnjrk" src="https://datawrapper.dwcdn.net/Mnjrk/2/?search=ANTH" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="774" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
     <br><br><br>
-
 </body>
 </html>
