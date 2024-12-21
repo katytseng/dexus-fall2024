@@ -13,39 +13,29 @@
     <select id="department"></select>
     <div id="map" style="height: 600px;"></div>
 
+    <!--MAP EMBED-->
     <script>
-    // Initialize the map
     const map = L.map('map').setView([34.413, -119.8455], 16); // UCSB's approximate coordinates
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; OpenStreetMap contributors'
     }).addTo(map);
 
-    console.log("Map initialized");
-
-    // Custom marker icon
     const largeMarkerIcon = L.icon({
         iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon.png',
-        iconSize: [10, 15],
-        iconAnchor: [25, 82],
-        popupAnchor: [0, -82]
+        iconSize: [0, 0]
     });
 
-    // Global data variable
     let allData = [];
-
-    // URLs for fetching data
     const departmentsUrl = 'https://raw.githubusercontent.com/katytseng/dexus-fall2024/refs/heads/main/departments.json';
     const classesUrl = 'https://raw.githubusercontent.com/katytseng/dexus-fall2024/refs/heads/main/classes.json';
 
     // Fetch departments and populate dropdown
     fetch(departmentsUrl)
         .then(response => {
-            console.log("Fetching departments.json");
             if (!response.ok) throw new Error(`Failed to load departments.json: ${response.status}`);
             return response.json();
         })
         .then(departments => {
-            console.log("Departments fetched:", departments);
             const dropdown = document.getElementById('department');
             departments.forEach(dept => {
                 const option = document.createElement('option');
@@ -53,27 +43,22 @@
                 option.textContent = dept;
                 dropdown.appendChild(option);
             });
-            console.log("Dropdown populated with departments");
         })
         .catch(error => console.error("Error fetching departments:", error));
 
     // Fetch the classes data
     fetch(classesUrl)
         .then(response => {
-            console.log("Fetching classes.json");
             if (!response.ok) throw new Error(`Failed to load classes.json: ${response.status}`);
             return response.json();
         })
         .then(data => {
-            console.log("Classes data fetched:", data);
             allData = data; // Store data for filtering later
         })
         .catch(error => console.error("Error fetching class data:", error));
 
     // Function to update markers based on dropdown selection
     function updateMarkers(selectedDepartment) {
-        console.log(`Selected department: ${selectedDepartment}`);
-
         // Clear existing markers
         map.eachLayer(layer => {
             if (layer instanceof L.Marker) map.removeLayer(layer);
@@ -81,7 +66,6 @@
 
         // Filter and add markers
         const filteredData = allData.filter(item => item.Department.startsWith(selectedDepartment));
-        console.log("Filtered data:", filteredData);
 
         filteredData.forEach(location => {
             const { Latitude, Longitude, Building, Percentage } = location;
@@ -90,51 +74,85 @@
                 L.marker([Latitude, Longitude], { icon: largeMarkerIcon })
                     .addTo(map)
                     .bindPopup(`${Building} holds ${Percentage}% of the department's lectures`)
-                    .bindTooltip(`${Building}: ${Percentage}%`, { permanent: true, offset: [-30, -30], opacity: 0.7 });
+                    .bindTooltip(`${Building}: ${Percentage}%`, { permanent: true, direction:'center', opacity: 0.7 });
             }
         });
-        console.log("Markers updated for selection.");
     }
+    </script>
 
-    // Add event listener to dropdown
-    document.getElementById('department').addEventListener('change', function () {
-        const selectedDepartment = this.value;
-        updateMarkers(selectedDepartment);
-    });
+    <!--DROPDOWN FOR CHARTS-->
+    <div class="dropdown">
+        <h1>Time of Departments' Lectures Locations</h1>
+        <p style="display: inline-block;">Select department:</p>
+        <select onchange="switchVis1(this.value); switchVis2(this.value)" style="display: inline-block; border-radius: 5px; border-color: gray; padding: 5px 30px;">
+            <option value="ANTH">ANTH</option>
+            <option value="ART">ART</option>
+            <option value="ARTHI">ARTHI</option>
+            <option value="AS AM">AS AM</option>
+            <option value="ASTRO">ASTRO</option>
+            <option value="BIOE">BIOE</option>
+            <option value="C LIT">C LIT</option>
+        </select>
+    </div>
+    
+    <!--SIDE BY SIDE CHARTS-->
+    <div style="display: flex;">
+        <div class="leftChart" style="position: relative; width: 50%; height: 774px; margin: 10px;">
+            <iframe 
+                aria-label="Table" 
+                id="datawrapper-chart-2eYpD" 
+                src="https://datawrapper.dwcdn.net/2eYpD/11/?search=ANTH" 
+                scrolling="no" 
+                frameborder="0" 
+                style="width: 0; min-width: 100% !important; border: none;" 
+                height="774" 
+                data-external="1">
+            </iframe>
+            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 50px; background: white; z-index: 10;">
+                Times of Departments' Lectures
+            </div>
+        </div>
+        <div class="rightChart" style="position: relative; width: 50%; height: 774px; margin:10px;">
+            <iframe 
+                aria-label="Table" 
+                id="datawrapper-chart-Mnjrk" 
+                src="https://datawrapper.dwcdn.net/Mnjrk/3/?search=ANTH" 
+                scrolling="no" frameborder="0" 
+                style="width: 0; min-width: 100% !important; border: none;" 
+                height="699" data-external="1">
+            </iframe>
+            
+            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 50px; background: white; z-index: 10;">
+                Days of Departments' Lectures
+            </div>
+        </div>
+    </div>
+    
+
+    <script type="text/javascript">
+        function switchVis1(chartId) {
+            const iframe = document.getElementById("datawrapper-chart-2eYpD");
+            iframe.src = `https://datawrapper.dwcdn.net/2eYpD/11/?search=${chartId}`;
+        }
+
+        function switchVis2(chartId) {
+            const iframe = document.getElementById("datawrapper-chart-Mnjrk");
+            iframe.src = `https://datawrapper.dwcdn.net/Mnjrk/3/?search=${chartId}`;
+        }
+
+        !function() {
+            "use strict";
+            window.addEventListener("message", function(a) {
+                if (void 0 !== a.data["datawrapper-height"]) {
+                    for (var e in a.data["datawrapper-height"]) {
+                        var t = document.getElementById("datawrapper-chart-" + e) || 
+                                document.querySelector("iframe[src*='" + e + "']");
+                        t && (t.style.height = a.data["datawrapper-height"][e] + "px");
+                    }
+                }
+            });
+        }();
 
     </script>
-    <style>
-        .leaflet-tooltip-left:before {
-            right: 0;
-            margin-right: 0px;
-            border-left-color: rgba(0, 0, 0, 0);
-        }
-        .leaflet-tooltip-right:before {
-            left: 0;
-            margin-left: 0px;
-            border-right-color: rgba(0, 0, 0, 0);
-        }
-        .leaflet-tooltip-own {
-            position: absolute;
-            margin: 0;
-            padding: 0px;
-            background-color: rgba(0, 0, 0, 0.0);
-            border: 0px solid #000;
-            color: #000;
-            white-space: nowrap;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            pointer-events: none;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0);
-        }
-    </style>
-
-    <br><br><br>
-    <iframe title="Time of Departments' Lectures" aria-label="Table" id="datawrapper-chart-2eYpD" src="https://datawrapper.dwcdn.net/2eYpD/8/?search=ANTH" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="774" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
-    <br><br><br>
-    <iframe title="Days of Departments' Lectures" aria-label="Table" id="datawrapper-chart-Mnjrk" src="https://datawrapper.dwcdn.net/Mnjrk/2/?search=ANTH" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="774" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
-    <br><br><br>
 </body>
 </html>
