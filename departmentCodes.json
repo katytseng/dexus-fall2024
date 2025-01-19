@@ -1,0 +1,446 @@
+[
+    {
+      "DepartmentCode": "ANTH",
+      "DepartmentName": "Anthropology"
+    },
+    {
+      "DepartmentCode": "ART",
+      "DepartmentName": "Art"
+    },
+    {
+      "DepartmentCode": "ART  CS",
+      "DepartmentName": "Art (Creative Studies)"
+    },
+    {
+      "DepartmentCode": "ARTHI",
+      "DepartmentName": "Art History"
+    },
+    {
+      "DepartmentCode": "ARTST",
+      "DepartmentName": "Art Studio"
+    },
+    {
+      "DepartmentCode": "AS AM",
+      "DepartmentName": "Asian American Studies"
+    },
+    {
+      "DepartmentCode": "ASTRO",
+      "DepartmentName": "Astronomy"
+    },
+    {
+      "DepartmentCode": "BIOE",
+      "DepartmentName": "Biological Engineering"
+    },
+    {
+      "DepartmentCode": "BIOL",
+      "DepartmentName": "Biology"
+    },
+    {
+      "DepartmentCode": "BIOL CS",
+      "DepartmentName": "Biology (Creative Studies)"
+    },
+    {
+      "DepartmentCode": "BL ST",
+      "DepartmentName": "Black Studies"
+    },
+    {
+      "DepartmentCode": "CH E",
+      "DepartmentName": "Chemical Engineering"
+    },
+    {
+      "DepartmentCode": "CHEM CS",
+      "DepartmentName": "Chemistry (Creative Studies)"
+    },
+    {
+      "DepartmentCode": "CHEM",
+      "DepartmentName": "Chemistry and Biochemistry"
+    },
+    {
+      "DepartmentCode": "CH ST",
+      "DepartmentName": "Chicano Studies"
+    },
+    {
+      "DepartmentCode": "CHIN",
+      "DepartmentName": "Chinese"
+    },
+    {
+      "DepartmentCode": "CLASS",
+      "DepartmentName": "Classics"
+    },
+    {
+      "DepartmentCode": "COMM",
+      "DepartmentName": "Communication"
+    },
+    {
+      "DepartmentCode": "C LIT",
+      "DepartmentName": "Comparative Literature"
+    },
+    {
+      "DepartmentCode": "CMPSC",
+      "DepartmentName": "Computer Science"
+    },
+    {
+      "DepartmentCode": "CMPSCCS",
+      "DepartmentName": "Computer Science (Creative Studies)"
+    },
+    {
+      "DepartmentCode": "CMPTG",
+      "DepartmentName": "Computing (Creative Studies)"
+    },
+    {
+      "DepartmentCode": "CMPTGCS",
+      "DepartmentName": "Computing (Creative Studies)"
+    },
+    {
+      "DepartmentCode": "CNCSP",
+      "DepartmentName": "Counseling, Clinical, School Psychology"
+    },
+    {
+      "DepartmentCode": "DANCE",
+      "DepartmentName": "Dance"
+    },
+    {
+      "DepartmentCode": "DYNS",
+      "DepartmentName": "Dynamical Neuroscience"
+    },
+    {
+      "DepartmentCode": "EARTH",
+      "DepartmentName": "Earth Science"
+    },
+    {
+      "DepartmentCode": "EACS",
+      "DepartmentName": "East Asian Cultural Studies"
+    },
+    {
+      "DepartmentCode": "EEMB",
+      "DepartmentName": "Ecology, Evolution & Marine Biology"
+    },
+    {
+      "DepartmentCode": "ECON",
+      "DepartmentName": "Economics"
+    },
+    {
+      "DepartmentCode": "ED",
+      "DepartmentName": "Education"
+    },
+    {
+      "DepartmentCode": "ECE",
+      "DepartmentName": "Electrical Computer Engineering"
+    },
+    {
+      "DepartmentCode": "ENGR",
+      "DepartmentName": "Engineering Sciences"
+    },
+    {
+      "DepartmentCode": "ENGL",
+      "DepartmentName": "English"
+    },
+    {
+      "DepartmentCode": "EDS",
+      "DepartmentName": "Environmental Data Science"
+    },
+    {
+      "DepartmentCode": "ESM",
+      "DepartmentName": "Environmental Science & Management"
+    },
+    {
+      "DepartmentCode": "ENV S",
+      "DepartmentName": "Environmental Studies"
+    },
+    {
+      "DepartmentCode": "ESS",
+      "DepartmentName": "Exercise & Sport Studies"
+    },
+    {
+      "DepartmentCode": "ES",
+      "DepartmentName": "Exercise Sport"
+    },
+    {
+      "DepartmentCode": "FEMST",
+      "DepartmentName": "Feminist Studies"
+    },
+    {
+      "DepartmentCode": "FAMST",
+      "DepartmentName": "Film and Media Studies"
+    },
+    {
+      "DepartmentCode": "FR",
+      "DepartmentName": "French"
+    },
+    {
+      "DepartmentCode": "GEN S",
+      "DepartmentName": "General Studies (Creative Studies)"
+    },
+    {
+      "DepartmentCode": "GEN SCS",
+      "DepartmentName": "General Studies (Creative Studies)"
+    },
+    {
+      "DepartmentCode": "GEOG",
+      "DepartmentName": "Geography"
+    },
+    {
+      "DepartmentCode": "GER",
+      "DepartmentName": "German"
+    },
+    {
+      "DepartmentCode": "GPS",
+      "DepartmentName": "Global Peace and Security"
+    },
+    {
+      "DepartmentCode": "GLOBL",
+      "DepartmentName": "Global Studies"
+    },
+    {
+      "DepartmentCode": "GRAD",
+      "DepartmentName": "Graduate Division"
+    },
+    {
+      "DepartmentCode": "GREEK",
+      "DepartmentName": "Greek"
+    },
+    {
+      "DepartmentCode": "HEB",
+      "DepartmentName": "Hebrew"
+    },
+    {
+      "DepartmentCode": "HIST",
+      "DepartmentName": "History"
+    },
+    {
+      "DepartmentCode": "IQB",
+      "DepartmentName": "Interdis. Program in Quantitative Biosci"
+    },
+    {
+      "DepartmentCode": "INT",
+      "DepartmentName": "Interdisciplinary"
+    },
+    {
+      "DepartmentCode": "INT  CS",
+      "DepartmentName": "Interdisciplinary (Creative Studies)"
+    },
+    {
+      "DepartmentCode": "ITAL",
+      "DepartmentName": "Italian"
+    },
+    {
+      "DepartmentCode": "JAPAN",
+      "DepartmentName": "Japanese"
+    },
+    {
+      "DepartmentCode": "KOR",
+      "DepartmentName": "Korean"
+    },
+    {
+      "DepartmentCode": "LATIN",
+      "DepartmentName": "Latin"
+    },
+    {
+      "DepartmentCode": "LAIS",
+      "DepartmentName": "Latin American and Iberian Studies"
+    },
+    {
+      "DepartmentCode": "LING",
+      "DepartmentName": "Linguistics"
+    },
+    {
+      "DepartmentCode": "LIT",
+      "DepartmentName": "Literature (Creative Studies)"
+    },
+    {
+      "DepartmentCode": "LIT  CS",
+      "DepartmentName": "Literature (Creative Studies)"
+    },
+    {
+      "DepartmentCode": "MARSC",
+      "DepartmentName": "Marine Science"
+    },
+    {
+      "DepartmentCode": "MARIN",
+      "DepartmentName": "Marine Science (Creative Studies)"
+    },
+    {
+      "DepartmentCode": "MARINCS",
+      "DepartmentName": "Marine Science (Creative Studies)"
+    },
+    {
+      "DepartmentCode": "MATRL",
+      "DepartmentName": "Materials"
+    },
+    {
+      "DepartmentCode": "MATH",
+      "DepartmentName": "Mathematics"
+    },
+    {
+      "DepartmentCode": "MATH CS",
+      "DepartmentName": "Mathematics (Creative Studies)"
+    },
+    {
+      "DepartmentCode": "ME",
+      "DepartmentName": "Mechanical Engineering"
+    },
+    {
+      "DepartmentCode": "MAT",
+      "DepartmentName": "Media Arts and Technology"
+    },
+    {
+      "DepartmentCode": "ME ST",
+      "DepartmentName": "Medieval Studies"
+    },
+    {
+      "DepartmentCode": "MES",
+      "DepartmentName": "Middle East Studies"
+    },
+    {
+      "DepartmentCode": "MS",
+      "DepartmentName": "Military Science"
+    },
+    {
+      "DepartmentCode": "MCDB",
+      "DepartmentName": "Molecular, Cellular & Develop. Biology"
+    },
+    {
+      "DepartmentCode": "MUS",
+      "DepartmentName": "Music"
+    },
+    {
+      "DepartmentCode": "MUS  CS",
+      "DepartmentName": "Music (Creative Studies)"
+    },
+    {
+      "DepartmentCode": "MUS A",
+      "DepartmentName": "Music Performance Laboratories"
+    },
+    {
+      "DepartmentCode": "PHIL",
+      "DepartmentName": "Philosophy"
+    },
+    {
+      "DepartmentCode": "PHYS",
+      "DepartmentName": "Physics"
+    },
+    {
+      "DepartmentCode": "PHYS CS",
+      "DepartmentName": "Physics (Creative Studies)"
+    },
+    {
+      "DepartmentCode": "POL S",
+      "DepartmentName": "Political Science"
+    },
+    {
+      "DepartmentCode": "PORT",
+      "DepartmentName": "Portuguese"
+    },
+    {
+      "DepartmentCode": "PSY",
+      "DepartmentName": "Psychology"
+    },
+    {
+      "DepartmentCode": "RG ST",
+      "DepartmentName": "Religious Studies"
+    },
+    {
+      "DepartmentCode": "RENST",
+      "DepartmentName": "Renaissance Studies"
+    },
+    {
+      "DepartmentCode": "RUSS",
+      "DepartmentName": "Russian"
+    },
+    {
+      "DepartmentCode": "SLAV",
+      "DepartmentName": "Slavic"
+    },
+    {
+      "DepartmentCode": "SOC",
+      "DepartmentName": "Sociology"
+    },
+    {
+      "DepartmentCode": "SPAN",
+      "DepartmentName": "Spanish"
+    },
+    {
+      "DepartmentCode": "SHS",
+      "DepartmentName": "Speech & Hearing Sciences"
+    },
+    {
+      "DepartmentCode": "PSTAT",
+      "DepartmentName": "Statistics & Applied Probability"
+    },
+    {
+      "DepartmentCode": "TMP",
+      "DepartmentName": "Technology Management"
+    },
+    {
+      "DepartmentCode": "THTR",
+      "DepartmentName": "Theater"
+    },
+    {
+      "DepartmentCode": "WRIT",
+      "DepartmentName": "Writing"
+    },
+    {
+      "DepartmentCode": "W&L  CSW",
+      "DepartmentName": "Writing & Lit(Creative Studies) (Online)"
+    },
+    {
+      "DepartmentCode": "W&L",
+      "DepartmentName": "Writing & Literature (Creative Studies)"
+    },
+    {
+      "DepartmentCode": "W&L  CS",
+      "DepartmentName": "Writing & Literature (Creative Studies)"
+    },
+    {
+      "DepartmentCode": "WINTER 2025",
+      "DepartmentName": "WINTER 2025"
+    },
+    {
+      "DepartmentCode": "FALL 2024",
+      "DepartmentName": "FALL 2024"
+    },
+    {
+      "DepartmentCode": "SUMMER 2024",
+      "DepartmentName": "SUMMER 2024"
+    },
+    {
+      "DepartmentCode": "SPRING 2024",
+      "DepartmentName": "SPRING 2024"
+    },
+    {
+      "DepartmentCode": "WINTER 2024",
+      "DepartmentName": "WINTER 2024"
+    },
+    {
+      "DepartmentCode": "FALL 2023",
+      "DepartmentName": "FALL 2023"
+    },
+    {
+      "DepartmentCode": "SUMMER 2023",
+      "DepartmentName": "SUMMER 2023"
+    },
+    {
+      "DepartmentCode": "SPRING 2023",
+      "DepartmentName": "SPRING 2023"
+    },
+    {
+      "DepartmentCode": "WINTER 2023",
+      "DepartmentName": "WINTER 2023"
+    },
+    {
+      "DepartmentCode": "FALL 2022",
+      "DepartmentName": "FALL 2022"
+    },
+    {
+      "DepartmentCode": "Undergraduate",
+      "DepartmentName": "Undergraduate"
+    },
+    {
+      "DepartmentCode": "Graduate",
+      "DepartmentName": "Graduate"
+    },
+    {
+      "DepartmentCode": "All",
+      "DepartmentName": "All"
+    }
+   ]
