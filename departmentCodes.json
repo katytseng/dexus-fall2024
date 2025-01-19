@@ -390,57 +390,5 @@
     {
       "DepartmentCode": "W&L  CS",
       "DepartmentName": "Writing & Literature (Creative Studies)"
-    },
-    {
-      "DepartmentCode": "WINTER 2025",
-      "DepartmentName": "WINTER 2025"
-    },
-    {
-      "DepartmentCode": "FALL 2024",
-      "DepartmentName": "FALL 2024"
-    },
-    {
-      "DepartmentCode": "SUMMER 2024",
-      "DepartmentName": "SUMMER 2024"
-    },
-    {
-      "DepartmentCode": "SPRING 2024",
-      "DepartmentName": "SPRING 2024"
-    },
-    {
-      "DepartmentCode": "WINTER 2024",
-      "DepartmentName": "WINTER 2024"
-    },
-    {
-      "DepartmentCode": "FALL 2023",
-      "DepartmentName": "FALL 2023"
-    },
-    {
-      "DepartmentCode": "SUMMER 2023",
-      "DepartmentName": "SUMMER 2023"
-    },
-    {
-      "DepartmentCode": "SPRING 2023",
-      "DepartmentName": "SPRING 2023"
-    },
-    {
-      "DepartmentCode": "WINTER 2023",
-      "DepartmentName": "WINTER 2023"
-    },
-    {
-      "DepartmentCode": "FALL 2022",
-      "DepartmentName": "FALL 2022"
-    },
-    {
-      "DepartmentCode": "Undergraduate",
-      "DepartmentName": "Undergraduate"
-    },
-    {
-      "DepartmentCode": "Graduate",
-      "DepartmentName": "Graduate"
-    },
-    {
-      "DepartmentCode": "All",
-      "DepartmentName": "All"
     }
    ]
