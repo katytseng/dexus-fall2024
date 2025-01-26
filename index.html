@@ -10,117 +10,137 @@
 <body>
     <h1>UCSB Classes Map</h1>
     <label for="department">Select Department:</label>
-    <select id="department"></select>
+    <select id='department' style="display: inline-block; border-radius: 5px; border-color: gray; padding: 5px 30px;"></select>
     <div id="map" style="height: 600px;"></div>
 
     <script>
-    // Initialize the map
-    const map = L.map('map').setView([34.413, -119.8455], 16); // UCSB's approximate coordinates
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; OpenStreetMap contributors'
-    }).addTo(map);
+        // Initialize the map
+        const map = L.map('map').setView([34.413, -119.8455], 16); // UCSB's approximate coordinates
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
 
-    console.log("Map initialized");
+        console.log("Map initialized");
 
-    // Custom marker icon
-    const largeMarkerIcon = L.icon({
-        iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon.png',
-        iconSize: [0,0],
-        iconAnchor: [25, 82],
-        popupAnchor: [0, -82]
-    });
+        // Custom marker icon
+        const largeMarkerIcon = L.icon({
+            iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon.png',
+            iconSize: [0,0],
+            iconAnchor: [25, 82],
+            popupAnchor: [0, -82]
+        });
 
-    // Global data variable
-    let allData = [];
+        // Global data variable
+        let allData = [];
 
-    // URLs for fetching data
-    const departmentsUrl = 'https://raw.githubusercontent.com/katytseng/dexus-fall2024/main/departments.json';
-    const classesUrl = 'https://raw.githubusercontent.com/katytseng/dexus-fall2024/main/classes.json';
+        // URLs for fetching data
+        const departmentsUrl = 'https://raw.githubusercontent.com/katytseng/dexus-fall2024/main/departments.json';
+        const classesUrl = 'https://raw.githubusercontent.com/katytseng/dexus-fall2024/main/classes.json';
+        const departmentCodesUrl = 'https://raw.githubusercontent.com/katytseng/dexus-fall2024/main/departmentCodes.json';
 
-    // Fetch departments and populate dropdown
-    fetch(departmentsUrl)
-        .then(response => {
-            console.log("Fetching departments.json");
-            if (!response.ok) throw new Error(`Failed to load departments.json: ${response.status}`);
-            return response.json();
-        })
-        .then(departments => {
-            console.log("Departments fetched:", departments);
-            const dropdown = document.getElementById('department');
-            departments.forEach(dept => {
-                const option = document.createElement('option');
-                option.value = dept;
-                option.textContent = dept;
-                dropdown.appendChild(option);
+        // Fetch departments and populate dropdown
+        fetch(departmentsUrl)
+            .then(response => {
+                console.log("Fetching departments.json");
+                if (!response.ok) throw new Error(`Failed to load departments.json: ${response.status}`);
+                return response.json();
+            })
+            .then(departments => {
+                console.log("Departments fetched:", departments);
+                const dropdown = document.getElementById('department');
+                departments.forEach(dept => {
+                    const option = document.createElement('option');
+                    option.value = dept;
+                    option.textContent = dept;
+                    dropdown.appendChild(option);
+                });
+                console.log("Dropdown populated with departments");
+            })
+            .catch(error => console.error("Error fetching departments:", error));
+
+        // Fetch the classes data
+        fetch(classesUrl)
+            .then(response => {
+                console.log("Fetching classes.json");
+                if (!response.ok) throw new Error(`Failed to load classes.json: ${response.status}`);
+                return response.json();
+            })
+            .then(data => {
+                console.log("Classes data fetched:", data);
+                allData = data; // Store data for filtering later
+            })
+            .catch(error => console.error("Error fetching class data:", error));
+
+        // Function to update markers based on dropdown selection
+        function updateMarkers(selectedDepartment) {
+            console.log(`Selected department: ${selectedDepartment}`);
+
+            // Clear existing markers
+            map.eachLayer(layer => {
+                if (layer instanceof L.Marker) map.removeLayer(layer);
             });
-            console.log("Dropdown populated with departments");
-        })
-        .catch(error => console.error("Error fetching departments:", error));
 
-    // Fetch the classes data
-    fetch(classesUrl)
-        .then(response => {
-            console.log("Fetching classes.json");
-            if (!response.ok) throw new Error(`Failed to load classes.json: ${response.status}`);
-            return response.json();
-        })
-        .then(data => {
-            console.log("Classes data fetched:", data);
-            allData = data; // Store data for filtering later
-        })
-        .catch(error => console.error("Error fetching class data:", error));
+            // Filter and add markers
+            const filteredData = allData.filter(item => item.Department.startsWith(selectedDepartment));
+            console.log("Filtered data:", filteredData);
 
-    // Function to update markers based on dropdown selection
-    function updateMarkers(selectedDepartment) {
-        console.log(`Selected department: ${selectedDepartment}`);
+            filteredData.forEach(location => {
+                const { Latitude, Longitude, Building, Percentage } = location;
 
-        // Clear existing markers
-        map.eachLayer(layer => {
-            if (layer instanceof L.Marker) map.removeLayer(layer);
+                if (Latitude && Longitude) {
+                    L.marker([Latitude, Longitude], { icon: largeMarkerIcon })
+                        .addTo(map)
+                        .bindPopup(`${Building} holds ${Percentage}% of the department's lectures`)
+                        .bindTooltip(`${Building}: ${Percentage}%`, { permanent: true, offset: [-30, -30], opacity: 0.9 });
+                }
+            });
+            console.log("Markers updated for selection.");
+        }
+
+        // Add event listener to dropdown
+        document.getElementById('department').addEventListener('change', function () {
+            const selectedDepartment = this.value;
+            updateMarkers(selectedDepartment);
         });
-
-        // Filter and add markers
-        const filteredData = allData.filter(item => item.Department.startsWith(selectedDepartment));
-        console.log("Filtered data:", filteredData);
-
-        filteredData.forEach(location => {
-            const { Latitude, Longitude, Building, Percentage } = location;
-
-            if (Latitude && Longitude) {
-                L.marker([Latitude, Longitude], { icon: largeMarkerIcon })
-                    .addTo(map)
-                    .bindPopup(`${Building} holds ${Percentage}% of the department's lectures`)
-                    .bindTooltip(`${Building}: ${Percentage}%`, { permanent: true, offset: [-30, -30], opacity: 0.9 });
-            }
-        });
-        console.log("Markers updated for selection.");
-    }
-
-    // Add event listener to dropdown
-    document.getElementById('department').addEventListener('change', function () {
-        const selectedDepartment = this.value;
-        updateMarkers(selectedDepartment);
-    });
 
     </script>
 
 
-    <!--DROPDOWN FOR CHARTS-->
+    <!--DROPDOWN FOR SIDE BY SIDE CHARTS-->
     <div class="dropdown">
         <h1>Time of Departments' Lectures Locations</h1>
         <p style="display: inline-block;">Select department:</p>
-        <select onchange="switchVis1(this.value); switchVis2(this.value)" style="display: inline-block; border-radius: 5px; border-color: gray; padding: 5px 30px;">
-            <option value="ANTH">ANTH</option>
-            <option value="ART">ART</option>
-            <option value="ART CS">ART CS</option>
-            <option value="ARTHI">ARTHI</option>
-            <option value="AS AM">AS AM</option>
-            <option value="ASTRO">ASTRO</option>
-            <option value="BIOE">BIOE</option>
-            <option value="C LIT">C LIT</option>
-            <option value="C LIT">C LIT</option>
-        </select>
+        <select id='department1' style="display: inline-block; border-radius: 5px; border-color: gray; padding: 5px 30px;"></select>
     </div>
+
+    <script>
+        fetch(departmentCodesUrl)
+            .then(response => {
+                console.log("Fetching departments.json");
+                if (!response.ok) throw new Error(`Failed to load departments.json: ${response.status}`);
+                return response.json();
+            })
+            .then(departments => {
+                console.log("Departments fetched:", departments);
+                const dropdown = document.getElementById('department1');
+                departments.forEach(dept => {
+                    const {DepartmentCode, DepartmentName} = dept;
+                    const option = document.createElement('option');
+                    option.value = DepartmentCode;
+                    option.textContent = DepartmentName;
+                    dropdown.appendChild(option);
+                });
+                console.log("Dropdown populated with departments");
+            })
+            .catch(error => console.error("Error fetching departments:", error));
+         
+
+        document.getElementById('department1').addEventListener('change', function () {
+            const selectedDepartment = this.value;
+            switchVis1(selectedDepartment);
+            switchVis2(selectedDepartment);
+        });
+    </script>
     
     <!--SIDE BY SIDE CHARTS-->
     <div style="display: flex;">
