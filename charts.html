@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UCSB Classes Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+<body>
+    
+    <!--DROPDOWN-->
+    <h1>Lecture times and days distribution</h1>
+    <p style="display: inline-block;">Select department:</p>
+    <select id='department1' style="display: inline-block; border-radius: 5px; border-color: gray; padding: 5px 30px;"></select>
+
+    <!--CHARTS-->
+    <div class="timeDistribution" style="position: relative; margin: 10px;">
+        <iframe 
+            aria-label="Table" 
+            id="datawrapper-chart-2eYpD" 
+            src="https://datawrapper.dwcdn.net/2eYpD/17/?search=ANTH" 
+            scrolling="no" 
+            frameborder="0" 
+            style="width: 0; min-width: 100% !important; border: none;" 
+            height="774" 
+            data-external="1">
+        </iframe>
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 50px; background: white; z-index: 10;">
+            Time of the day for each department's lectures (Fall 2023 - Fall 2024 Data)
+        </div>
+    </div>
+
+    <div class="dayDistribution" style="position: relative; margin:10px;">
+        <iframe 
+            aria-label="Table" 
+            id="datawrapper-chart-Mnjrk" 
+            src="https://datawrapper.dwcdn.net/Mnjrk/9/?search=ANTH" 
+            scrolling="no" frameborder="0" 
+            style="width: 0; min-width: 100% !important; border: none;" 
+            height="699" data-external="1">
+        </iframe>
+        
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 50px; background: white; z-index: 10;">
+            Day of the week for each department's lectures (Fall 2023 - Fall 2024 Data)
+        </div>
+    </div>
+    
+    <!--JS SCRIPT FOR TABLES-->
+    <script type="text/javascript">
+        // URLs for fetching data
+        const departmentsUrl = 'https://raw.githubusercontent.com/katytseng/dexus-fall2024/main/departments.json';
+        const classesUrl = 'https://raw.githubusercontent.com/katytseng/dexus-fall2024/main/classes.json';
+        const departmentCodesUrl = 'https://raw.githubusercontent.com/katytseng/dexus-fall2024/main/departmentCodes.json';
+
+        // Fetch table data
+        fetch(departmentCodesUrl)
+            .then(response => {
+                console.log("Fetching departments.json");
+                if (!response.ok) throw new Error(`Failed to load departments.json: ${response.status}`);
+                return response.json();
+            })
+            .then(departments => {
+                console.log("Departments fetched:", departments);
+                const dropdown = document.getElementById('department1');
+                departments.forEach(dept => {
+                    const {DepartmentCode, DepartmentName} = dept;
+                    const option = document.createElement('option');
+                    option.value = DepartmentCode;
+                    option.textContent = DepartmentName;
+                    dropdown.appendChild(option);
+                });
+                console.log("Dropdown populated with departments");
+            })
+            .catch(error => console.error("Error fetching departments:", error));
+        
+        // Event listener for dropdown, update on change
+        document.getElementById('department1').addEventListener('change', function () {
+            const selectedDepartment = this.value;
+            switchVis1(selectedDepartment);
+            switchVis2(selectedDepartment);
+        });
+
+        function switchVis1(chartId) {
+            const iframe = document.getElementById("datawrapper-chart-2eYpD");
+            iframe.src = `https://datawrapper.dwcdn.net/2eYpD/17/?search=${chartId}`;
+        }
+
+        function switchVis2(chartId) {
+            const iframe = document.getElementById("datawrapper-chart-Mnjrk");
+            iframe.src = `https://datawrapper.dwcdn.net/Mnjrk/9/?search=${chartId}`;
+        }
+
+        !function() {
+            "use strict";
+            window.addEventListener("message", function(a) {
+                if (void 0 !== a.data["datawrapper-height"]) {
+                    for (var e in a.data["datawrapper-height"]) {
+                        var t = document.getElementById("datawrapper-chart-" + e) || 
+                                document.querySelector("iframe[src*='" + e + "']");
+                        t && (t.style.height = a.data["datawrapper-height"][e] + "px");
+                    }
+                }
+            });
+        }();
+
+    </script>
+
+</body>
+</html>
